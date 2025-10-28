@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "admin",
+      "username": "admin",
+      "password": "admin123",
+      "name": "Doni Panorama"
+    }
+  ],
+  "siswa": [
+    { "id": "X001", "nama": "Budi Santoso", "kelas": "X TMI", "foto_url": "images/budi.jpg" },
+    { "id": "X002", "nama": "Siti Aminah", "kelas": "X TMI", "foto_url": "images/siti.jpg" },
+    { "id": "X003", "nama": "Cahyo Wibowo", "kelas": "X TKR 1", "foto_url": "images/cahyo.jpg" },
+    { "id": "X004", "nama": "Dewi Lestari", "kelas": "X TKR 1", "foto_url": "images/dewi.jpg" },
+    { "id": "X005", "nama": "Eka Pratiwi", "kelas": "X TKR 2", "foto_url": "images/eka.jpg" },
+    { "id": "X006", "nama": "Fajar Nugroho", "kelas": "X RPL", "foto_url": "images/fajar.jpg" },
+    { "id": "XI01", "nama": "Gita Permata", "kelas": "XI TMI", "foto_url": "images/gita.jpg" },
+    { "id": "XI02", "nama": "Handoko Jaya", "kelas": "XI RPL", "foto_url": "images/handoko.jpg" },
+    { "id": "XII01", "nama": "Indah Sari", "kelas": "XII TKR 1", "foto_url": "images/indah.jpg" },
+    { "id": "XII02", "nama": "Joko Widodo", "kelas": "XII RPL", "foto_url": "images/joko.jpg" }
+  ],
+  "mapel": ["Matematika", "Bahasa Indonesia", "Bahasa Inggris", "Fisika", "Kimia", "Pendidikan Agama"],
+  "absensi": [],
+  "nilai": []
+}

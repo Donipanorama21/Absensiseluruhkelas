@@ -1,0 +1,535 @@
+/* ===================== RESET & DASAR ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --primary: #b0b7ba;
+    --primary-dark: #8b9498;
+    --bg-gradient: linear-gradient(135deg, #f6f6f6, #e2e2e2);
+    --text: #333;
+    --transition: all 0.3s ease;
+}
+
+/* ===================== BODY & WRAPPER ===================== */
+body {
+    background: var(--bg-gradient);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+.dashboard-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Memastikan body memiliki ketinggian minimum yang cukup */
+    /* Styling Background Halaman Utama */
+    background-image: url('path/to/your/background-image.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    background-color: #f4f7f6; /* Warna cadangan */
+}
+
+.dashboard-wrapper {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+    position: fixed;
+    left: -240px; /* Lebar sidebar */
+    top: 0;
+    width: 240px;
+    height: 100%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    z-index: 300;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Foto Profil User di Sidebar (Penambahan Baru) */
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+}
+
+.user-name {
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Daftar Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: var(--primary-dark);
+    transform: translateX(3px);
+}
+
+/* Tombol Logout */
+.logout {
+    margin-top: auto;
+    text-align: center;
+    padding: 14px;
+    background: linear-gradient(135deg, #b0b7ba, #9aa1a4);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.logout button {
+    width: 85%;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.logout button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #222;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.logout button:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 250;
+}
+
+.overlay.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    transition: var(--transition);
+    margin-left: 250px; /* Jarak dari sidebar desktop */
+    /* Styling Main Content di atas Background */
+    background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-height: 100vh; /* Agar bisa menutupi semua konten */
+}
+
+.dashboard-header {
+    margin-bottom: 20px;
+    margin-top: 0; /* Di desktop tidak perlu margin-top tinggi */
+}
+
+.dashboard-header h1 {
+    color: var(--primary-dark);
+    font-size: 26px;
+}
+
+.dashboard-header p {
+    color: #000;
+    margin-top: 4px;
+}
+
+/* ===================== FORM SECTION ===================== */
+.form-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin-top: 25px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-section.hidden {
+    display: none;
+}
+
+.form-section h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fdfdfd;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.form-section input:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+    border-color: var(--primary-dark);
+    outline: none;
+}
+
+.form-section button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-section button:hover {
+    background: var(--primary-dark);
+    transform: scale(1.03);
+}
+
+/* ======== Input Nilai ======== */
+#form-nilai input[type="number"] {
+    width: 100%;
+}
+
+/* ======== Hover & fokus select dropdown ======== */
+.form-section select:hover,
+.form-section select:focus {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* ===================== LOGIN PAGE ===================== */
+.login-container {
+    background: var(--bg-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-box {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+.login-box h3 {
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+}
+
+.login-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid var(--primary-dark);
+}
+
+.login-box input {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.login-box input:focus {
+    border-color: var(--primary-dark);
+    outline: none;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: var(--primary-dark);
+}
+
+.demo-info {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* ===================== ANIMASI ===================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== TAMBAHAN KHUSUS DASHBOARD ===================== */
+
+/* Section Dashboard Rekap */
+#dashboard-section {
+    margin-top: 30px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Chart canvas */
+#dashboard-section canvas {
+    width: 100% !important;
+    max-height: 300px;
+    border-radius: 12px;
+    margin-top: 15px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Statistik dashboard (total siswa, rata nilai, persen hadir) */
+#dashboard-section p {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #444;
+}
+
+/* ===================== TAMBAHAN TABEL ===================== */
+/* Tabel absensi dan nilai */
+#tabel-absensi,
+#tabel-rekap {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+#tabel-absensi th,
+#tabel-absensi td,
+#tabel-rekap th,
+#tabel-rekap td {
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+#tabel-absensi th,
+#tabel-rekap th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+#tabel-absensi tbody tr:nth-child(even),
+#tabel-rekap tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+#tabel-absensi tbody tr:hover,
+#tabel-rekap tbody tr:hover {
+    background: #f1f1f1;
+}
+
+/* Responsive untuk tabel */
+@media (max-width: 480px) {
+    #tabel-absensi th, #tabel-absensi td,
+    #tabel-rekap th, #tabel-rekap td {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+}
+
+/* ===================== TAMBAHAN BUTTON & PARALLAX ===================== */
+button {
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+.background-parallax {
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+}
+
+
+/* ===================== RESPONSIVE (DIBERSIHKAN & DIGABUNGKAN) ===================== */
+
+/* Tombol Toggle Sidebar */
+.menu-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 26px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    color: #000;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 8px 12px;
+    z-index: 1100;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+    opacity: 0.6; /* transparan saat idle */
+}
+
+.menu-toggle:hover,
+.sidebar.open ~ .menu-toggle {
+    opacity: 1; /* terang saat aktif/hover */
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.05);
+}
+
+.menu-toggle.moved {
+    position: fixed;
+    left: calc(240px + 15px); /* Sesuaikan dengan lebar sidebar 240px + padding 15px */
+    transition: left 0.3s ease;
+}
+
+
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* Sidebar tidak lagi mengambil ruang di mobile */
+        padding: 20px;
+        min-height: 100vh;
+    }
+    
+    .sidebar {
+        left: -240px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+    
+    .dashboard-header {
+        margin-top: 60px; /* memberi jarak dari toggle */
+        margin-left: 10px;
+        text-align: left;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #000; /* warna hitam */
+        margin-bottom: 5px;
+    }
+    
+    .menu-toggle.moved {
+        left: 15px; /* Kembali ke posisi awal di mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 20px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+}
